@@ -12,3 +12,4 @@ func main() {
 	a, b := 3.12, 1.784
 	fmt.Println(add(a, b))
 }
+
