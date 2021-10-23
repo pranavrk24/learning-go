@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// float64 is the type if it's not specified
 func add(a, b float64) float64 {
 	return a + b
 }
