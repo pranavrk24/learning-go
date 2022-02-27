@@ -8,7 +8,8 @@ import "fmt"
 This
 is
 a
-multi-line
+multi
+line
 comment
 */
 
