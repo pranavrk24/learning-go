@@ -1,22 +1,40 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
+	"net"
 	"net/http"
 )
 
+func tcp() {
+	conn, err := net.Dial("tcp", "golang.org:80")
+	panicErr(err)
+
+	fmt.Fprintf(conn, "GET / HTTP/1.0\r\n\r\n")
+	status, err := bufio.NewReader(conn).ReadString('\n')
+
+	panicErr(err)
+	fmt.Println(status)
+}
+
+func httpGET() {
+	resp, err := http.Get("https://golang.org")
+	panicErr(err)
+
+	body, err := io.ReadAll(resp.Body)
+	panicErr(err)
+
+	fmt.Println(string(body))
+}
+
 func main() {
-	fmt.Println("Hello world!")
-	resp, _ := http.Get("https://lco.dev")
-	fmt.Println(resp)
+	httpGET()
+}
 
-	sum := 0
-	for i := 1; i < 10; i++ {
-		fmt.Println(i)
-		sum += i
+func panicErr(e error) {
+	if e != nil {
+		panic(e)
 	}
-
-	fmt.Println(sum)
-	// close the response
-	defer resp.Body.Close()
 }
