@@ -2,17 +2,13 @@ package main
 
 import "fmt"
 
-func returnValues() (x, y int) {
-	x = 32
-	x += 32
-	y = 64
-	y += 32
-	return
+func returnValues(x int) {
+	x *= 3
+	fmt.Println(x)
 }
 
 func main() {
-	var isAdmin string
-	fmt.Println(isAdmin)
-
-	fmt.Println(returnValues())
+	x := 2
+	returnValues(x)
+	fmt.Println(x)
 }
